@@ -11,7 +11,7 @@ app.register_blueprint(test2)
 @app.route('/login1')
 @app.route('/1')
 def login1():
-    return redirect('/test_case1/welcome')
+    return redirect('/test_case1/welcome?tag=foo')
 
 
 @app.route('/login2')
