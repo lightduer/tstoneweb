@@ -1,13 +1,13 @@
 import wtforms
 from flask import Blueprint
-from flask_restful import Api, Resource
-from common.rest_method import Segment
+from flask_restful import Api
+from common.rest_method import Segment, MyResource
 
 test1 = Blueprint("test_case1", __name__, url_prefix='/test_case1')
 api = Api(test1)
 
 
-class TestWelcome(Resource):
+class TestWelcome(MyResource):
     id = Segment(['DELETE', 'POST', 'PUT'], wtforms.StringField, default='', validator=[])
 
     def get(self):

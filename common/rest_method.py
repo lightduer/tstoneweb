@@ -47,9 +47,6 @@ class MyResource(Resource):
     decorators = []
     _form_class = {}
 
-    def options(self):
-        return ''
-
     def _make_form(self, req_args, req_files):
         """ make the form by query parameters"""
         fields = {}
