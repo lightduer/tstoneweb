@@ -1,11 +1,24 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from flask import make_response, jsonify
+
 OK = 200
+
+
+class MyExceptionMeta(type):
+    derived_class = []
+
+    def __new__(metacls, cls_name, bases, namespace):
+        _class = super(MyExceptionMeta, metacls).__new__(
+            metacls, cls_name, bases, namespace)
+        metacls.derived_class.append(_class)
+        return _class
 
 
 class MyBaseException(Exception):
     """ Common base class for all non-exit exceptions. """
+    __metaclass__ = MyExceptionMeta
     code = 400
 
 
@@ -120,6 +133,18 @@ class UnknownError(MyBaseException):
 class InternalError(MyBaseException):
     """ 内部错误 """
     code = 500
+
+
+def error_handler(e):
+    ret_val = {"status": e.code, "message": e.message, "data": None}
+    return make_response(jsonify(ret_val), 200)
+
+
+def register_error_handler(app):
+    for exc in MyExceptionMeta.derived_class:
+        if exc is not MyBaseException:
+            app.register_error_handler(exc, error_handler)
+
 
 
 

@@ -8,8 +8,7 @@ from flask import request
 from flask.views import MethodViewType
 from flask_restful import Resource
 from werkzeug.datastructures import ImmutableMultiDict
-
-from common import exceptions
+from common.exceptions import MyBaseException, CheckException
 
 
 class Segment(object):
@@ -66,7 +65,7 @@ def _wrapper_rest_method(func):
         # just new test
         form, new_req_args = self._make_form(req_args, request.files)
         if not form.validate():
-            raise exceptions.CheckException(form.errors)
+            raise CheckException(form.errors)
         field_value = self._set_field_value(form.data)
         if field_value:
             kwargs.update(field_value)
@@ -203,3 +202,8 @@ class MyResource(Resource):
         if convert_errors:
             raise Exception('\n'.join(convert_errors))
         return form_data
+
+    @staticmethod
+    def error_router(original_handler, e):
+        return original_handler(e)
+

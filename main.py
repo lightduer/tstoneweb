@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import redirect
+from common.exceptions import register_error_handler
 from test_case1.main import test1
 from test_case2.main import test2
 
 app = Flask(__name__)
+register_error_handler(app)
 app.register_blueprint(test1)
 app.register_blueprint(test2)
 

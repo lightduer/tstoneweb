@@ -11,4 +11,5 @@ class TestWelcome(MyResource):
         return 'Welcome to my test2 restful-blueprint'
 
 api.add_resource(TestWelcome, '/welcome')
+api.error_router = MyResource.error_router
 
