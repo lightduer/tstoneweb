@@ -13,6 +13,7 @@ class TestWelcome(MyResource):
     def get(self):
         return 'Welcome to my test1 restful-blueprint'
 
+
 api.add_resource(TestWelcome, '/welcome')
 api.error_router = MyResource.error_router
 

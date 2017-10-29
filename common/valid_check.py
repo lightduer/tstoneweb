@@ -195,7 +195,7 @@ class MyResource(Resource):
                 try:
                     val = conv(val)
                 except Exception as e:
-                    print e.message
+                    pass
             setattr(self, field, val)
             form_data[field] = val
 
