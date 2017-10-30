@@ -6,6 +6,7 @@ from settings import SQLALCHEMY_DATABASE_URI
 
 from test_case1.main import test1
 from test_case2.main import test2
+from url_resource.main import EndpointResourceManager
 from user.view import user_view
 
 app = Flask(__name__)
@@ -16,8 +17,11 @@ app.register_blueprint(user_view)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app_db.init_app(app)
+app.db = app_db
+app.first_time = False
 with app.app_context():
     app_db.create_all()
+    EndpointResourceManager.script_init_endpoint_resource_table(app)
 
 
 @app.route('/login1')
