@@ -81,13 +81,8 @@ def _wrapper_rest_method(func):
 
 
 class DynamicObjectMeta(type):
-    ''' define the metaclass for dynamic object for create,
-    record the segment fields in __fields just for no need
-    to use 'dir(self)' for subclass in for loop
-    '''
-
     def __new__(cls, name, base, attrs):
-        t = type.__new__(cls, name, base, attrs)
+        t = super(DynamicObjectMeta, cls).__new__(cls, name, base, attrs)
         # if the 'cls' is the subclass of DynamicObject
         if Resource in base:
             return t
@@ -107,8 +102,8 @@ class DynamicObjectMeta(type):
                 if not key.startswith('__') and isinstance(val, Segment):
                     fields.append(key)
             setattr(t, '__fields', fields)
-            if not hasattr(t, '__hidden_support__'):
-                setattr(t, '__uuid__', '{0}.{1}'.format(t.__module__, name))
+            # if not hasattr(t, '__hidden_support__'):
+            #     setattr(t, '__uuid__', '{0}.{1}'.format(t.__module__, name))
             if not is_subclass:
                 setattr(t, '__funcs', [])
                 cls.decorate_real_method(t, 'get', _wrapper_rest_method)
@@ -127,7 +122,7 @@ class DynamicObjectMeta(type):
         # this function get all hidden method call, don't wrapper it !
         if hasattr(real_type, '__hidden_support__'):
             return
-        if getattr(real_type, '__uuid__', None) and hasattr(real_type, method_name):
+        if hasattr(real_type, method_name):
             setattr(real_type, method_name, decorate_method(origin_func))
 
 

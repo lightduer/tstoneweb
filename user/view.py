@@ -1,40 +1,29 @@
-from flask import Blueprint
+# -*- coding: utf-8 -*-
+import wtforms
+from flask import Blueprint, url_for, redirect
 from flask_restful import Api
+from common.valid_check import Segment
 from common.valid_check import MyResource
 
 user_view = Blueprint("user_view", __name__, url_prefix='/user')
 api = Api(user_view)
 
 
+# @user_view.route('/login3')
+# def login_view1():
+#     return redirect(url_for('static', filename='login.html'))
+
+
 class LoginView(MyResource):
+
+    username = Segment(['POST'], wtforms.StringField, default='', validator=[])
+    pw = Segment(['POST'], wtforms.PasswordField, default='', validator=[])
+
     def get(self):
-        return  '''
-        <html>
+        return redirect(url_for('static', filename='login.html'))
 
-            <head>
-
-                <meta charset="utf-8" />
-
-                <title>Flask - Test</title>
-
-            </head>
-
-            <body>
-
-                <form action="/" method="post">
-                    姓名：
-                    <input type="text" name="username">
-                    <input type="text" name="pw">
-                    <input type="submit" value="Submit" />
-                </form>
-
-            </body>
-
-        </html>
-        '''
-
-    def post(self):
-        pass
+    def post(self, username, pw):
+        return 111
 
 
 api.add_resource(LoginView, '/login')
