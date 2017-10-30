@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import redirect
-from common.exceptions import register_error_handler
+from common.wrapper_exceptions import register_error_handler
 from db.main import db as app_db
 from settings import SQLALCHEMY_DATABASE_URI
 

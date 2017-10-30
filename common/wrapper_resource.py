@@ -8,7 +8,7 @@ from flask import request
 from flask.views import MethodViewType
 from flask_restful import Resource
 from werkzeug.datastructures import ImmutableMultiDict
-from common.exceptions import CheckException
+from common.wrapper_exceptions import CheckException
 
 
 class Segment(object):

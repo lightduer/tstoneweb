@@ -2,8 +2,8 @@
 import wtforms
 from flask import Blueprint, url_for, redirect
 from flask_restful import Api
-from common.valid_check import Segment
-from common.valid_check import MyResource
+from common.wrapper_resource import Segment
+from common.wrapper_resource import MyResource
 
 user_view = Blueprint("user_view", __name__, url_prefix='/user')
 api = Api(user_view)
