@@ -2,11 +2,11 @@ from flask import Flask
 from flask import redirect
 from common.wrapper_exceptions import register_error_handler
 from db.main import db as app_db
+from role.main import EndpointResourceManager
 from settings import SQLALCHEMY_DATABASE_URI
 
 from test_case1.main import test1
 from test_case2.main import test2
-from url_resource.main import EndpointResourceManager
 from user.view import user_view
 
 app = Flask(__name__)

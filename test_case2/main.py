@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_restful import Api
-from common.wrapper_resource import MyResource
+from common.wrapper_class import MyResource
 
 test2 = Blueprint("test_case2", __name__, url_prefix='/test_case2')
 api = Api(test2)

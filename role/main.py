@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from url_resource.model import EndpointResource
+from role.model import EndpointResource
 
 
 class EndpointResourceManager(object):
@@ -13,4 +12,3 @@ class EndpointResourceManager(object):
                 er = EndpointResource(k, method, 'no desc')
                 app.db.session.add(er)
         app.db.session.commit()
-
