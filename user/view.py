@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-import wtforms
 from flask import Blueprint, url_for, redirect
-from flask_restful import Api
-from common.wrapper_class import Segment
-from common.wrapper_class import MyResource
+from flask_restful import Api, Resource
 
 user_view = Blueprint("user_view", __name__, url_prefix='/user')
 api = Api(user_view)
@@ -14,17 +11,13 @@ api = Api(user_view)
 #     return redirect(url_for('static', filename='login.html'))
 
 
-class LoginView(MyResource):
-
-    username = Segment(['POST'], wtforms.StringField, default='', validator=[])
-    pw = Segment(['POST'], wtforms.PasswordField, default='', validator=[])
+class LoginView(Resource):
 
     def get(self):
         return redirect(url_for('static', filename='login.html'))
 
-    def post(self, username, pw):
+    def post(self):
         return 111
 
 
 api.add_resource(LoginView, '/login')
-api.error_router = MyResource.error_router

@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import redirect
-from common.wrapper_exceptions import register_error_handler
 from db.main import db as app_db
 from role.main import EndpointResourceManager
 from settings import SQLALCHEMY_DATABASE_URI
@@ -10,7 +9,6 @@ from test_case2.main import test2
 from user.view import user_view
 
 app = Flask(__name__)
-register_error_handler(app)
 app.register_blueprint(test1)
 app.register_blueprint(test2)
 app.register_blueprint(user_view)
