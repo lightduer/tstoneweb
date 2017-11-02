@@ -1,9 +1,10 @@
 from flask import Flask
 from flask import redirect
+from flask import session
 
 from common.app_cache import session_cache
 from common.app_database import db
-from common.app_session import session_interface
+from common.app_session import RedisSessionInterface
 from role.main import EndpointResourceManager
 from settings import SQLALCHEMY_DATABASE_URI
 
@@ -21,7 +22,7 @@ db.init_app(app)
 app.db = db
 session_cache.init_app(app)
 app.cache = session_cache
-app.session_interface = session_interface
+app.session_interface = RedisSessionInterface(app.cache)
 app.first_time = False
 with app.app_context():
     db.create_all()
