@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import redirect
-from flask import session
 
 from common.app_cache import session_cache
 from common.app_database import db
