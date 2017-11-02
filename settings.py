@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://lh:123456@127.0.0.1:3306/tstone'
+SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://lh:123456@10.74.41.144:3306/tstone'
 CACHE_REDIS_HOST = "10.187.101.204"
 CACHE_REDIS_PORT = 6379
 CACHE_REDIS_PASSWORD = ""
