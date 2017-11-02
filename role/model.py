@@ -1,4 +1,4 @@
-from db.main import db
+from common.app_database import db
 
 
 class EndpointResource(db.Model):

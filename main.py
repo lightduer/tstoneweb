@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import redirect
-from db.main import db as app_db
+
+from common.app_cache import cache
+from common.app_database import db
 from role.main import EndpointResourceManager
 from settings import SQLALCHEMY_DATABASE_URI
 
@@ -14,11 +16,13 @@ app.register_blueprint(test2)
 app.register_blueprint(user_view)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-app_db.init_app(app)
-app.db = app_db
+db.init_app(app)
+app.db = db
+cache.init_app(app)
+app.cache = cache
 app.first_time = False
 with app.app_context():
-    app_db.create_all()
+    db.create_all()
     EndpointResourceManager.script_init_endpoint_resource_table(app)
 
 
