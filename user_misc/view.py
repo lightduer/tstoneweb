@@ -2,13 +2,13 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
 
-user_misc = Blueprint("user_misc", __name__, url_prefix='/user')
+user_misc = Blueprint("user_misc", __name__, url_prefix='/user_misc')
 api = Api(user_misc)
 
 
 @user_misc.route('/login')
 def login():
-    pass
+    return "login"
 
 
 @user_misc.route('/logout')
@@ -24,7 +24,7 @@ def reset_password():
 class UserMisc(Resource):
     def get(self):
         # 获取用户信息
-        pass
+        return "get"
 
     def post(self):
         # 创建一个用户

@@ -1,4 +1,4 @@
-from flask.ext.cache import Cache
+from flask_cache import Cache
 
 from settings import CACHE_REDIS_HOST, CACHE_REDIS_PORT, CACHE_REDIS_PASSWORD, CACHE_SESSION_DB
 

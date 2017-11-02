@@ -8,9 +8,11 @@ from db_model import db
 from settings import SQLALCHEMY_DATABASE_URI
 from test_case1.main import test1
 from test_case2.main import test2
+from user_misc.view import user_misc
 
 app = Flask(__name__)
 app.register_blueprint(test1)
+app.register_blueprint(user_misc)
 app.register_blueprint(test2)
 
 
