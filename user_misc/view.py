@@ -16,23 +16,35 @@ def logout():
     pass
 
 
-@user_misc.route('/resetpw')
-def reset_password():
+@user_misc.route('/reset_pw')
+def reset_pw():
     pass
 
 
-class UserMisc(Resource):
+@user_misc.route('/verify_code')
+def verify_code():
+    pass
+
+
+class UserInfo(Resource):
+    def get(self, user_id):
+        # 获取用户信息
+        return user_id
+
+    def put(self, user_id):
+        # 修改用户信息
+        pass
+
+
+class UserInfoList(Resource):
     def get(self):
         # 获取用户信息
         return "get"
 
     def post(self):
-        # 创建一个用户
-        pass
-
-    def put(self):
         # 修改用户信息
         pass
 
 
-api.add_resource(UserMisc, '/user')
+api.add_resource(UserInfoList, '/users')
+api.add_resource(UserInfo, '/users/<user_id>')
