@@ -2,6 +2,8 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
 
+from db_model.user import User
+
 user_misc = Blueprint("user_misc", __name__, url_prefix='/um')
 api = Api(user_misc)
 

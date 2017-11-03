@@ -9,3 +9,6 @@ class User(db.Model):
     def __init__(self, username, email):
         self.username = username
         self.email = email
+
+    def add(self):
+        pass
