@@ -2,7 +2,7 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
 
-user_misc = Blueprint("user_misc", __name__, url_prefix='/user_misc')
+user_misc = Blueprint("user_misc", __name__, url_prefix='/um')
 api = Api(user_misc)
 
 
