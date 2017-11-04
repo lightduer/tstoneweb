@@ -10,7 +10,7 @@ class EndpointResource(db.Model):
     endpoint = db.Column(db.String(1024))
     description = db.Column(db.String(120))
 
-    def __init__(self,key_id=None, uuid='', endpoint='', desc=''):
+    def __init__(self, key_id=None, uuid='', endpoint='', desc=''):
         self.id = key_id
         self.uuid = uuid
         self.endpoint = endpoint
