@@ -3,7 +3,7 @@ from flask import session
 
 from common.app_cache import session_cache
 from common.app_session import RedisSessionInterface
-from db_model import db
+from models import db
 from settings import SQLALCHEMY_DATABASE_URI
 from user_misc.view import user_misc
 

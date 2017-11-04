@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+import wtforms
 from flask import Blueprint
-from flask_restful import Api, Resource
-from common.app_object import BaseObject
+from flask_restful import Api
+from wtforms import validators
 
+from common.app_object import BaseObject, Segment
 
 user_misc = Blueprint("user_misc", __name__, url_prefix='/um')
 api = Api(user_misc)
@@ -39,12 +41,17 @@ class UserInfo(BaseObject):
 
 
 class UserInfoList(BaseObject):
+
+    name = Segment(['POST'], wtforms.StringField, default='', validator=[validators.Length(min=6, max=25)])
+    email = Segment(['POST'], wtforms.StringField, default='', validator=[])
+    password = Segment(['POST'], wtforms.PasswordField, default='', validator=[])
+
     def get(self):
         # 获取用户信息
         return "get"
 
     def post(self):
-        # 修改用户信息
+        # 创建用户信息
         pass
 
 
