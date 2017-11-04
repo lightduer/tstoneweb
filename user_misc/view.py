@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint
 from flask_restful import Api, Resource
+from common.app_object import BaseObject
 
-from db_model.user import User
 
 user_misc = Blueprint("user_misc", __name__, url_prefix='/um')
 api = Api(user_misc)
@@ -28,7 +28,7 @@ def verify_code():
     pass
 
 
-class UserInfo(Resource):
+class UserInfo(BaseObject):
     def get(self, user_id):
         # 获取用户信息
         return user_id
@@ -38,7 +38,7 @@ class UserInfo(Resource):
         pass
 
 
-class UserInfoList(Resource):
+class UserInfoList(BaseObject):
     def get(self):
         # 获取用户信息
         return "get"

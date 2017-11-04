@@ -11,4 +11,9 @@ class User(db.Model):
         self.email = email
 
     def add(self):
-        pass
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+
