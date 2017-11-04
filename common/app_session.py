@@ -63,4 +63,5 @@ class RedisSessionInterface(SessionInterface):
                             expires=cookie_exp, httponly=True,
                             domain=domain)
 
+
 session_interface = RedisSessionInterface()
